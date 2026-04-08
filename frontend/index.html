@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FinanceAI — Big Data NBA System</title>
+  <meta name="description" content="Financial Next Best Action System using Apache Spark, Hadoop HDFS and ALS Machine Learning"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ NAV ═══════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <div class="brand-icon">⚡</div>
+    <span class="brand-name">Finance<span class="brand-accent">AI</span></span>
+  </div>
+  <div class="nav-links">
+    <a href="#hero"        class="nav-link active" data-section="hero">Home</a>
+    <a href="#architecture" class="nav-link"        data-section="architecture">Architecture</a>
+    <a href="#demo"        class="nav-link"         data-section="demo">Live Demo</a>
+    <a href="#dataset"     class="nav-link"         data-section="dataset">Dataset</a>
+    <a href="#tech"        class="nav-link"         data-section="tech">Tech Stack</a>
+  </div>
+  <div class="nav-badge">Big Data Project</div>
+</nav>
+
+<!-- ═══════════════════════════════════ HERO ══════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-orb orb3"></div>
+    <canvas id="particleCanvas"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge animated-badge">
+      <span class="badge-dot"></span>
+      Apache Spark + Hadoop HDFS + ALS ML
+    </div>
+    <h1 class="hero-title">
+      Financial<br/>
+      <span class="gradient-text">Next Best Action</span><br/>
+      System
+    </h1>
+    <p class="hero-desc">
+      A Big Data recommendation engine that analyzes user financial behavior using
+      <strong>Apache Spark MLlib's ALS algorithm</strong> on distributed
+      <strong>Hadoop HDFS</strong> storage to suggest the most impactful financial actions.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num" data-target="500">0</div>
+        <div class="stat-label">Users Analyzed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-label">Financial Actions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="3">0</div>
+        <div class="stat-label">Recommendations / User</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#demo" class="btn-primary">Try Live Demo →</a>
+      <a href="#architecture" class="btn-secondary">View Architecture</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="flow-diagram">
+      <div class="flow-step" style="--delay:0s">
+        <div class="flow-icon">📂</div>
+        <div class="flow-label">Dataset</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="--delay:0.2s">
+        <div class="flow-icon">🗄️</div>
+        <div class="flow-label">HDFS</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="--delay:0.4s">
+        <div class="flow-icon">⚡</div>
+        <div class="flow-label">Spark</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="--delay:0.6s">
+        <div class="flow-icon">🤖</div>
+        <div class="flow-label">ALS ML</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="--delay:0.8s">
+        <div class="flow-icon">💡</div>
+        <div class="flow-label">Recommendations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ ARCHITECTURE ════════════════════════════════ -->
+<section class="section" id="architecture">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">System Design</div>
+      <h2 class="section-title">Big Data Architecture</h2>
+      <p class="section-desc">End-to-end distributed pipeline from raw data ingestion to personalized financial recommendations.</p>
+    </div>
+
+    <div class="arch-pipeline">
+      <!-- Layer 1 -->
+      <div class="arch-layer">
+        <div class="arch-layer-title">📥 Data Layer</div>
+        <div class="arch-blocks">
+          <div class="arch-block blue">
+            <div class="arch-block-icon">📄</div>
+            <div class="arch-block-name">finance_nba_data.csv</div>
+            <div class="arch-block-desc">Raw user-action interaction data</div>
+            <div class="arch-block-code">userId | actionId | rating</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-connector"><div class="connector-line"></div><div class="connector-arrow">⬇</div></div>
+
+      <!-- Layer 2 -->
+      <div class="arch-layer">
+        <div class="arch-layer-title">🗄️ Storage Layer</div>
+        <div class="arch-blocks">
+          <div class="arch-block orange">
+            <div class="arch-block-icon">🐘</div>
+            <div class="arch-block-name">Hadoop HDFS</div>
+            <div class="arch-block-desc">Distributed File System — stores large datasets across multiple nodes</div>
+            <div class="arch-block-code">/finance/data/finance_nba_data.csv</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-connector"><div class="connector-line"></div><div class="connector-arrow">⬇</div></div>
+
+      <!-- Layer 3 -->
+      <div class="arch-layer">
+        <div class="arch-layer-title">⚡ Processing Layer</div>
+        <div class="arch-blocks">
+          <div class="arch-block purple">
+            <div class="arch-block-icon">⚡</div>
+            <div class="arch-block-name">Apache Spark</div>
+            <div class="arch-block-desc">Reads from HDFS, builds DataFrame, applies ML — 100x faster than MapReduce</div>
+            <div class="arch-block-code">spark.read.csv() → DataFrame</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-connector"><div class="connector-line"></div><div class="connector-arrow">⬇</div></div>
+
+      <!-- Layer 4 -->
+      <div class="arch-layer">
+        <div class="arch-layer-title">🤖 ML Layer</div>
+        <div class="arch-blocks">
+          <div class="arch-block green">
+            <div class="arch-block-icon">🧠</div>
+            <div class="arch-block-name">ALS Algorithm</div>
+            <div class="arch-block-desc">Alternating Least Squares — Collaborative Filtering (same as Netflix)</div>
+            <div class="arch-block-code">model.recommendForAllUsers(3)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-connector"><div class="connector-line"></div><div class="connector-arrow">⬇</div></div>
+
+      <!-- Layer 5 -->
+      <div class="arch-layer">
+        <div class="arch-layer-title">📤 Output Layer</div>
+        <div class="arch-blocks">
+          <div class="arch-block teal">
+            <div class="arch-block-icon">📊</div>
+            <div class="arch-block-name">JSON Recommendations</div>
+            <div class="arch-block-desc">Top 3 financial actions stored back in HDFS</div>
+            <div class="arch-block-code">/finance/output/recommendations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALS Explanation -->
+    <div class="als-explain">
+      <h3 class="als-title">🧠 How ALS (Collaborative Filtering) Works</h3>
+      <div class="als-grid">
+        <div class="als-card">
+          <div class="als-step">1</div>
+          <h4>Input Matrix</h4>
+          <p>A matrix of Users × Actions with ratings. Most values are empty (sparse matrix).</p>
+        </div>
+        <div class="als-card">
+          <div class="als-step">2</div>
+          <h4>Matrix Factorization</h4>
+          <p>ALS breaks the matrix into 2 smaller matrices — User Factors & Item Factors.</p>
+        </div>
+        <div class="als-card">
+          <div class="als-step">3</div>
+          <h4>Alternating Optimization</h4>
+          <p>Fixes User matrix → solves Item matrix → fixes Item → solves User → repeats until optimal.</p>
+        </div>
+        <div class="als-card">
+          <div class="als-step">4</div>
+          <h4>Predict & Recommend</h4>
+          <p>Reconstructs the full matrix and picks the top-rated unseen actions per user.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ LIVE DEMO ═════════════════════════════════ -->
+<section class="section demo-section" id="demo">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Interactive</div>
+      <h2 class="section-title">Live Recommendation Demo</h2>
+      <p class="section-desc">Enter a User ID to simulate the complete Spark ALS pipeline and see personalized financial recommendations.</p>
+    </div>
+
+    <div class="demo-layout">
+      <!-- Input Panel -->
+      <div class="demo-input-panel">
+        <div class="input-card">
+          <h3 class="input-title">🔍 Query User</h3>
+          <div class="input-group">
+            <label class="input-label">Enter User ID</label>
+            <div class="input-row">
+              <input type="number" id="userIdInput" class="user-input" placeholder="e.g. 127" min="1" max="999"/>
+              <button class="analyze-btn" id="analyzeBtn" onclick="runDemo()">
+                <span class="btn-text">Analyze</span>
+                <span class="btn-icon">⚡</span>
+              </button>
+            </div>
+            <div class="quick-users">
+              <span class="quick-label">Quick test:</span>
+              <button class="quick-btn" onclick="quickUser(100)">User 100</button>
+              <button class="quick-btn" onclick="quickUser(127)">User 127</button>
+              <button class="quick-btn" onclick="quickUser(205)">User 205</button>
+              <button class="quick-btn special" onclick="quickUser(999)">New User</button>
+            </div>
+          </div>
+
+          <div class="pipeline-progress" id="pipelineProgress" style="display:none">
+            <h4 class="progress-title">Processing Pipeline</h4>
+            <div class="progress-steps">
+              <div class="progress-step" id="ps1">
+                <div class="ps-icon">🗄️</div>
+                <div class="ps-info">
+                  <div class="ps-name">Reading from HDFS</div>
+                  <div class="ps-path">/finance/data/finance_nba_data.csv</div>
+                </div>
+                <div class="ps-status" id="ps1s">⏳</div>
+              </div>
+              <div class="progress-step" id="ps2">
+                <div class="ps-icon">⚡</div>
+                <div class="ps-info">
+                  <div class="ps-name">Spark DataFrame</div>
+                  <div class="ps-path">Parsing userId | actionId | rating</div>
+                </div>
+                <div class="ps-status" id="ps2s">⏳</div>
+              </div>
+              <div class="progress-step" id="ps3">
+                <div class="ps-icon">🤖</div>
+                <div class="ps-info">
+                  <div class="ps-name">ALS Model Training</div>
+                  <div class="ps-path">Alternating Least Squares optimization</div>
+                </div>
+                <div class="ps-status" id="ps3s">⏳</div>
+              </div>
+              <div class="progress-step" id="ps4">
+                <div class="ps-icon">💡</div>
+                <div class="ps-info">
+                  <div class="ps-name">Generating Recommendations</div>
+                  <div class="ps-path">model.recommendForAllUsers(3)</div>
+                </div>
+                <div class="ps-status" id="ps4s">⏳</div>
+              </div>
+            </div>
+
+            <!-- Add Spark Terminal -->
+            <h4 class="progress-title" style="margin-top: 1.5rem;">Spark Execution Logs</h4>
+            <div class="spark-terminal">
+              <div class="term-header">
+                <span class="term-dot close"></span>
+                <span class="term-dot min"></span>
+                <span class="term-dot max"></span>
+                <span class="term-title">joyboy@cluster:~/.spark/logs</span>
+              </div>
+              <div class="term-body" id="sparkTerminalOut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Output Panel -->
+      <div class="demo-output-panel" id="outputPanel">
+        <div class="output-placeholder" id="outputPlaceholder">
+          <div class="placeholder-icon">🎯</div>
+          <p>Enter a User ID and click Analyze to see recommendations</p>
+        </div>
+
+        <div class="output-result" id="outputResult" style="display:none">
+          <div class="result-header">
+            <div class="result-user-badge">
+              <span class="result-user-id" id="resultUserId">User #127</span>
+              <span class="result-badge">Top 3 Recommendations</span>
+            </div>
+            
+            <!-- User Profile Card -->
+            <div class="user-profile-card">
+               <div class="upc-title">👤 Financial Profile</div>
+               <div class="upc-grid">
+                 <div class="upc-item"><span class="upc-label">Age</span><span class="upc-val" id="profileAge">32</span></div>
+                 <div class="upc-item"><span class="upc-label">Income</span><span class="upc-val" id="profileIncome">$85k</span></div>
+                 <div class="upc-item"><span class="upc-label">Risk</span><span class="upc-val" id="profileRisk">Low</span></div>
+                 <div class="upc-item"><span class="upc-label">Goal</span><span class="upc-val" id="profileGoal">Debt Free</span></div>
+               </div>
+            </div>
+          </div>
+
+          <!-- Model Metrics -->
+          <div class="model-metrics">
+            <div class="metric">
+              <div class="metric-val" id="metricRmse">0.8241</div>
+              <div class="metric-label">ALS Test RMSE</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val" id="metricTime">14.2s</div>
+              <div class="metric-label">Training Time</div>
+            </div>
+            <div class="metric">
+              <div class="metric-val" id="metricNodes">4</div>
+              <div class="metric-label">Cluster Nodes</div>
+            </div>
+          </div>
+
+          <div class="result-cards" id="resultCards"></div>
+
+          <div class="result-json">
+            <div class="json-header">
+              <span>📄 HDFS Output (JSON format)</span>
+              <div>
+                <span class="json-path">/finance/output/recommendations</span>
+                <button class="export-btn" onclick="exportJson()">⬇️ Export</button>
+              </div>
+            </div>
+            <pre class="json-code" id="jsonOutput"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ DATASET ═════════════════════════════════ -->
+<section class="section" id="dataset">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Data</div>
+      <h2 class="section-title">Dataset & Financial Actions</h2>
+      <p class="section-desc">Sample interaction data stored in Hadoop HDFS used to train the ALS model.</p>
+    </div>
+
+    <div class="dataset-layout">
+      <!-- Actions Reference -->
+      <div class="actions-card">
+        <h3 class="card-title">💼 Financial Action Catalog</h3>
+        <div class="actions-table">
+          <div class="table-header">
+            <div>Action ID</div>
+            <div>Action Name</div>
+            <div>Category</div>
+            <div>Risk Level</div>
+          </div>
+          <div class="table-row" onclick="highlightAction(1)">
+            <div class="action-id-cell">1</div>
+            <div class="action-name">🛡️ Emergency Fund</div>
+            <div class="action-tag safety">Safety</div>
+            <div class="risk-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+          <div class="table-row" onclick="highlightAction(2)">
+            <div class="action-id-cell">2</div>
+            <div class="action-name">📈 S&P 500 ETF</div>
+            <div class="action-tag investment">Investment</div>
+            <div class="risk-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot"></span></div>
+          </div>
+          <div class="table-row" onclick="highlightAction(3)">
+            <div class="action-id-cell">3</div>
+            <div class="action-name">💳 Debt Repayment</div>
+            <div class="action-tag debt">Debt</div>
+            <div class="risk-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          </div>
+          <div class="table-row" onclick="highlightAction(4)">
+            <div class="action-id-cell">4</div>
+            <div class="action-name">🥇 Gold Investment</div>
+            <div class="action-tag investment">Investment</div>
+            <div class="risk-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot"></span></div>
+          </div>
+          <div class="table-row" onclick="highlightAction(5)">
+            <div class="action-id-cell">5</div>
+            <div class="action-name">💰 Tax Saving Scheme</div>
+            <div class="action-tag tax">Tax</div>
+            <div class="risk-dots"><span class="dot active"></span><span class="dot active"></span><span class="dot active"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sample CSV -->
+      <div class="csv-card">
+        <h3 class="card-title">📄 Sample Dataset Preview</h3>
+        <div class="csv-path">📁 HDFS: /finance/data/finance_nba_data.csv</div>
+        <div class="csv-table">
+          <div class="csv-header">
+            <div>userId</div>
+            <div>actionId</div>
+            <div>rating</div>
+          </div>
+          <div id="csvRows"></div>
+        </div>
+        <div class="csv-note">⚡ Full dataset loaded via <code>spark.read.csv()</code> from HDFS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ TECH STACK ══════════════════════════════════ -->
+<section class="section tech-section" id="tech">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Technologies</div>
+      <h2 class="section-title">Tech Stack Explained</h2>
+      <p class="section-desc">Each technology was chosen for a specific Big Data purpose.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-logo hadoop">🐘</div>
+        <h3 class="tech-name">Apache Hadoop HDFS</h3>
+        <div class="tech-role">Storage Layer</div>
+        <p class="tech-why"><strong>Why?</strong> Large financial datasets cannot fit on a single machine. HDFS distributes data across multiple nodes with automatic replication (fault tolerant).</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo spark">⚡</div>
+        <h3 class="tech-name">Apache Spark</h3>
+        <div class="tech-role">Processing Engine</div>
+        <p class="tech-why"><strong>Why?</strong> Spark processes data <strong>100x faster</strong> than Hadoop MapReduce by keeping data in-memory. It also has built-in MLlib for ML model training.</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo als">🧠</div>
+        <h3 class="tech-name">ALS Algorithm</h3>
+        <div class="tech-role">ML — Collaborative Filtering</div>
+        <p class="tech-why"><strong>Why?</strong> ALS handles sparse matrices efficiently. With millions of users and few actions each, the rating matrix is mostly empty — ALS fills the gaps through matrix factorization.</p>
+      </div>
+
+      <div class="tech-card">
+        <div class="tech-logo mllib">🔬</div>
+        <h3 class="tech-name">Spark MLlib</h3>
+        <div class="tech-role">ML Library</div>
+        <p class="tech-why"><strong>Why?</strong> MLlib is Spark's built-in machine learning library that is distributed by nature. Training runs in parallel across all cluster nodes automatically.</p>
+      </div>
+    </div>
+
+    <!-- Code Flow -->
+    <div class="code-flow">
+      <h3 class="code-flow-title">📋 Spark Code Flow Explained</h3>
+      <div class="code-steps">
+        <div class="code-step">
+          <div class="code-step-num">1</div>
+          <div class="code-step-content">
+            <div class="code-step-title">Read Data from HDFS</div>
+            <pre class="code-block"><span class="code-comment">// Read CSV from Hadoop HDFS</span>
+df = spark.read.csv(<span class="code-str">"hdfs:///finance/data/finance_nba_data.csv"</span>,
+                    header=<span class="code-kw">True</span>, inferSchema=<span class="code-kw">True</span>)
+df.show()</pre>
+          </div>
+        </div>
+        <div class="code-step">
+          <div class="code-step-num">2</div>
+          <div class="code-step-content">
+            <div class="code-step-title">Prepare DataFrame</div>
+            <pre class="code-block"><span class="code-comment">// Cast to correct types</span>
+df = df.withColumn(<span class="code-str">"userId"</span>, col(<span class="code-str">"userId"</span>).cast(<span class="code-str">"integer"</span>))
+       .withColumn(<span class="code-str">"actionId"</span>, col(<span class="code-str">"actionId"</span>).cast(<span class="code-str">"integer"</span>))
+       .withColumn(<span class="code-str">"rating"</span>, col(<span class="code-str">"rating"</span>).cast(<span class="code-str">"float"</span>))</pre>
+          </div>
+        </div>
+        <div class="code-step">
+          <div class="code-step-num">3</div>
+          <div class="code-step-content">
+            <div class="code-step-title">Train ALS Model</div>
+            <pre class="code-block"><span class="code-comment">// Configure ALS</span>
+als = ALS(maxIter=<span class="code-num">10</span>, regParam=<span class="code-num">0.1</span>,
+          userCol=<span class="code-str">"userId"</span>, itemCol=<span class="code-str">"actionId"</span>, ratingCol=<span class="code-str">"rating"</span>,
+          coldStartStrategy=<span class="code-str">"drop"</span>)
+
+model = als.fit(df)  <span class="code-comment">// Train!</span></pre>
+          </div>
+        </div>
+        <div class="code-step">
+          <div class="code-step-num">4</div>
+          <div class="code-step-content">
+            <div class="code-step-title">Generate Recommendations</div>
+            <pre class="code-block"><span class="code-comment">// Top 3 recommendations per user</span>
+recommendations = model.recommendForAllUsers(<span class="code-num">3</span>)
+recommendations.write.json(<span class="code-str">"hdfs:///finance/output/recommendations"</span>)</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand-icon">⚡</div>
+        <span class="brand-name">Finance<span class="brand-accent">AI</span></span>
+      </div>
+      <div class="footer-info">
+        <p>Big Data Analytics Project — Financial NBA System</p>
+        <p class="footer-tech">Apache Hadoop · Apache Spark · ALS Collaborative Filtering · MLlib</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
